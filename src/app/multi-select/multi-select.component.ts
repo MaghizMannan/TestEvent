@@ -42,24 +42,14 @@ export class MultiSelectComponent implements OnInit {
     this.onChange.emit(this.selectedOptions)
   }
 
-  singleFilterFlag (filterItem: string[], optionItem: Option) {
-    return (
-      (
-        filterItem[0].trim().toLowerCase()=='label' && 
-        optionItem.label.toLowerCase().includes(filterItem[1].trim().toLowerCase())
-      ) || (
-        filterItem[0].trim().toLowerCase()=='value' && 
-        optionItem.value.toLowerCase().includes(filterItem[1].trim().toLowerCase())
-      )
-    );
-  }
+  
 
   filterFlag(filterItem: string[], optionItem: Option) {
     return (
       (
         filterItem[0].trim().toLowerCase()=='label' && 
         optionItem.label.toLowerCase().includes(filterItem[1].trim().toLowerCase())
-      ) && (
+      ) || (
         filterItem[0].trim().toLowerCase()=='value' && 
         optionItem.value.toLowerCase().includes(filterItem[1].trim().toLowerCase())
       )
@@ -84,7 +74,7 @@ export class MultiSelectComponent implements OnInit {
         this.options = newOptions;
       } else {
         let filterValue: string[] = this.searchString.split(':')
-        this.options = this.initialOptions.filter(item => this.singleFilterFlag(filterValue, item)
+        this.options = this.initialOptions.filter(item => this.filterFlag(filterValue, item)
         );
       }
     } else {
