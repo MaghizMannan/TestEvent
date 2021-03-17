@@ -1,0 +1,9 @@
+<div class='multiselect-area'>
+    <input type='text' placeholder='label:<search string>, value: <search string>' class='search-text-input' *ngIf="filter" (change)="onSearch()" [(ngModel)]="searchString" />
+    <div class='button-holder' *ngIf="filter">
+        <img src='assets/images/magnifying-glass-icon-26751-Windows.ico' />
+    </div>
+    <div class='dropdown-area'>
+        <app-multi-select-item *ngFor="let optionEl of options" [option]="optionEl" (optionSelected)="onOptionSelected($event)"></app-multi-select-item>
+    </div>
+</div>
